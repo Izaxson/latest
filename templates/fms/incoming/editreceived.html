@@ -1,0 +1,121 @@
+{% extends 'fms/base2.html' %}
+{% load static%}
+{% load widget_tweaks %}
+{% block content %}
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <img src="{% static 'images/mdrbanner.png'%}" alt="banner" />
+            </div>
+          </div>
+        </div>
+        <p class="card-description">
+          
+        </p>
+        <form method="POST" enctype="multipart/form-data" class="forms-sample">
+          {% csrf_token %}
+          <div class="form-group">
+           
+            {% render_field form.subject type="text" class="form-control" placeholder="Subject"  %}
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail3">File Name</label>
+            
+            {% render_field form.file_name type="text" class="form-control"  placeholder="File name" %}
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail3">Entity</label>
+            
+            {% render_field form.entity type="text" class="form-control"   placeholder="" %}
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail3">Institution</label>
+            
+            {% render_field form.institution type="text" class="form-control"   placeholder="" %}
+          </div>
+          
+          <div class="form-group" >
+            <label for="exampleInputEmail3">Date Received</label>
+            
+            {% render_field form.date_received type="date"  class="form-control"   placeholder="Date" %}
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail3">Office To</label>
+            
+            {% render_field form.office_to type="text" class="form-control"   placeholder="" %}
+          </div>
+
+       
+         
+          <div class="form-group">
+            <label>File upload</label>
+            <input type="file" name="file" class="file-upload-default">
+            <div class="input-group col-xs-12">
+              {% render_field form.file type="file" class="form-control"  %}
+              <span class="input-group-append">
+                <button class="file-upload-browse btn btn-success" disabled type="button">Upload</button>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleTextarea1">Remarks</label>
+            {% render_field form.remarks type="textarea" class="form-control"   placeholder="Remarks" %}
+          </div>
+          <div class="form-group">
+            <button btn btn-success type="submit"class="btn btn-success d-none d-lg-flex">Update</button> 
+          </div>
+       
+          <br><br>
+        
+               
+                
+                
+          
+          
+            <p class="card-description">{{file_name}}</p>
+            <button class="btn btn-outline-danger" onclick="showSwal('warning-message-and-cancel')">Delete!</button>
+           
+          </div>
+
+         </form>
+       
+    </div>
+      
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Get a reference to the date input field
+    var dateReceivedInput = document.querySelector('#id_date_received');
+  
+    // Get today's date in the format 'YYYY-MM-DD'
+    var today = new Date().toISOString().split('T')[0];
+  
+    // Set the maximum date for the input field
+    dateReceivedInput.max = today;
+  </script>
+  <script src="{% static 'vendors/js/vendor.bundle.base.js'%}"></script>
+  <script src="{% static 'vendors/js/vendor.bundle.addons.js'%}"></script>
+  <!-- endinject -->
+  <!-- inject:js -->
+ 
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'js/alerts.js'%}"></script>
+  <script src="{% static 'js/avgrund.js'%}"></script>
+
+
+ 
+  <script src="{% static 'js/dashboard.js'%}"></script>
+  <script src="{% static 'js/off-canvas.js'%}"></script>
+  <script src="{% static 'js/hoverable-collapse.js'%}"></script>
+  <script src="{% static 'js/misc.js'%}"></script>
+  <script src="{% static 'js/settings.js'%}"></script>
+  <script src="{% static 'js/todolist.js'%}"></script>
+{% endblock %}

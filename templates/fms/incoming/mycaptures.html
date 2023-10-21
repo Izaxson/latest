@@ -1,0 +1,184 @@
+{% extends 'fms/base2.html' %}
+{% load static%}
+{% load widget_tweaks %}
+
+{% block content %}
+{% load widget_tweaks %}
+<!-- Notification.css -->
+
+<div class="content-wrapper">
+  <div class="page-header">
+
+  
+  </div>
+ 
+
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <img src="{% static 'images/mdrbanner.png'%}" alt="banner" />
+          </div>
+        </div>
+      </div>
+      <form class="form-sample">
+        <p class="card-description">
+         
+        </p>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Subject</label>
+                <div class="col-sm-9">
+                    {% render_field filter.form.subject__icontains type="text" class="form-control" placeholder="Subject" %}
+                </div>
+            </div>
+        </div>
+          <div class="col-md-6">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">File Name</label>
+                <div class="col-sm-9">
+                    {% render_field filter.form.file_name__icontains type="text" class="form-control" placeholder="File Name" %}
+                </div>
+            </div>
+        </div>
+          {% comment %} <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Received From</label>
+              <div class="col-sm-9">
+                {% render_field filter.form.office_to type="text" class="form-control" placeholder="Subject"  %}
+              </div>
+            </div>
+          </div> {% endcomment %}
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Institution</label>
+              <div class="col-sm-9">
+                {% render_field filter.form.institution__icontains type="text" class="form-control" placeholder="Institution" %}
+              </div>
+            </div>
+          </div>
+        
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Date Sent</label>
+              <div class="col-sm-9">
+                {% render_field filter.form.date_received type="date" class="form-control" placeholder=""  %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Office To </label>
+              <div class="col-sm-9">
+                {% render_field filter.form.office_to type="text" class="form-control" placeholder=""  %}
+              </div>
+            </div>
+          </div>
+        
+                     
+        </div>
+                   
+        <button type="submit" name='q' class="btn btn btn-success">Search </button>
+     
+    </form>
+      <br><br>
+      {% if messages %}
+      <div class="alert alert-success" role="alert">
+  
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+  
+      </div>
+      {% endif %}
+
+      {% if user.is_authenticated and user.is_clerk %}
+        <button><a class="nav-link" "float-right" href="{% url 'addreceived' %}">
+          <span class="btn btn-success"> Upload New </span>
+          </a>
+        </button>
+   {% endif %}
+    <br><br>
+      <div class="row">
+        <div class="col-12">
+
+          <div class="table-responsive">
+            <table id="order-listing" class="table">
+              <thead>
+                <tr class="bg-success text-white">
+
+                  <th>#</th>
+                  <th>subject</th>
+                  <th>institution</th>
+                  <th>Date Received</th>
+                  
+                  <th>Office To</th>
+               
+                  <th>View</th>
+                  <th>Download</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for received in object_list%}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{received.subject}}</td>
+
+                  <td>{{received.institution}}</td>
+                  <td>{{received.date_received|date:"d-m-Y"}}</td>
+                  
+                  <td>{{received.office_to}}</td>
+                  
+
+                  <td>
+                    <a href="{% url 'view-file' received.id %}">  <button class="btn btn-light"><i class="fa fa-eye text-primary"></i>
+                    </button>
+                  </td>
+                    
+
+                  <td class="text-right">
+                        <a href="{% url 'received-download' received.id %}"> <button
+                        class="btn waves-effect waves-light btn-light"><i class="fas fa-download"></i></button></a>
+
+                  </td>
+                </tr>
+
+                {% endfor%}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+<script>
+  // Get a reference to the date input field
+  var dateReceivedInput = document.querySelector('#id_date_received');
+
+  // Get today's date in the format 'YYYY-MM-DD'
+  var today = new Date().toISOString().split('T')[0];
+
+  // Set the maximum date for the input field
+  dateReceivedInput.max = today;
+</script>
+<script src="{% static 'vendors/js/vendor.bundle.base.js'%}"></script>
+<script src="{% static 'vendors/js/vendor.bundle.addons.js'%}"></script>
+<!-- endinject -->
+<!-- inject:js -->
+<script src="{% static 'js/off-canvas.js'%}"></script>
+<script src="{% static 'js/hoverable-collapse.js'%}"></script>
+<script src="{% static 'js/misc.js'%}"></script>
+<script src="{% static 'js/settings.js'%}"></script>
+<script src="{% static 'js/todolist.js'%}"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="{% static 'js/data-table.js'%}"></script>
+{% endblock %}

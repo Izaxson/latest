@@ -1,0 +1,57 @@
+{% extends 'fms/base2.html' %}
+{% load static%}
+{% block content %}
+
+<div class="main-panel">          
+    <div class="content-wrapper">
+      <div class="page-header">
+        
+        
+      </div>
+      <div class="row">
+      
+        <div class="col-12 grid-margin">
+          
+            <div class="card-body">
+              <div class="row">
+               
+                
+                
+                    <div class="wrapper text-center">
+                      <h4 class="card-title">You are about to permanently Delete this file</h4>
+                      <p class="card-description">{{file_name}}</p>
+                      <button class="btn btn-outline-danger" onclick="showSwal('warning-message-and-cancel')">Delete!</button>
+                      <a href="{% url 'edit-received' received.id %}">
+                        <button class="btn btn-success float-right">Back</button>
+                    </a>
+                    </div>
+                  </div>
+              
+            </div>
+          </div>
+        </div>
+       
+      
+    </div>
+    <!-- content-wrapper ends -->
+ 
+<!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+<!-- plugins:js -->
+<script src="{% static 'vendors/js/vendor.bundle.base.js'%}"></script>
+<script src="{% static 'vendors/js/vendor.bundle.addons.js'%}"></script>
+<!-- endinject -->
+<!-- inject:js -->
+<script src="{% static 'js/off-canvas.js'%}"></script>
+<script src="{% static 'js/hoverable-collapse.js'%}"></script>
+<script src="{% static 'js/misc.js'%}"></script>
+<script src="{% static 'js/settings.js'%}"></script>
+<script src="{% static 'js/todolist.js'%}"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="{% static 'js/alerts.js'%}"></script>
+<script src="{% static 'js/avgrund.js'%}"></script>
+<!-- End custom js for this page-->
+
+{% endblock  %}

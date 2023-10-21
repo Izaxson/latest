@@ -1,0 +1,180 @@
+{% extends 'fms/base2.html' %}
+{% load static%}
+{% load widget_tweaks %}
+{% block content %}
+<div class="pcoded-content">
+    <!-- Page-header start -->
+    <div class="page-header">
+        
+            <div class="row align-items-center">
+                
+                <div class="col-md-4">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="index.html"> <i class="fa fa-home"></i> </a>
+                        </li>
+                     
+                       
+                    </ul>
+                </div>
+                </div>
+                    </div>
+                </div>
+                <!-- Page-header end -->
+                <div class="pcoded-inner-content">
+                <!-- Main-body start -->
+                <div class="main-body">
+                    <div class="page-wrapper">
+              
+                <!-- Page body start -->
+                
+                 
+               
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                               
+                                <div class="card-block">
+                                    <h4 class="sub-title">Received File</h4>
+                                    <h4 class="sub-title">Upload  File</h4>
+                                    <form method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {% with WIDGET_ERROR_CLASS='my_error' WIDGET_REQUIRED_CLASS='my_required' %}
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Subject</label>
+                                            <div class="col-sm-8">
+                                             {% render_field form.subject type="text" class="form-control"  %} 
+                                           
+                                            </div>
+                                        </div>
+                                      
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">File name</label>
+                                            <div class="col-sm-8">
+                                                
+                                                {% render_field form.file_name type="text" class="form-control"  placeholder="File name" %}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Entity From</label>
+                                            <div class="col-sm-8">
+                                                
+                                                {% render_field form.entity type="text" class="form-control"   placeholder="Sent TO" %}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Institution From</label>
+                                            <div class="col-sm-8">
+                                                
+                                                {% render_field form.institution type="text" class="form-control"   placeholder="" %}
+                                            </div>
+                                        </div>
+                                      
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Priority</label>
+                                            <div class="col-sm-8">
+                                                
+                                                {% render_field form.priority type="text" class="form-control"   placeholder="Optional" %}
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Date Received</label>
+                                            <div class="col-sm-6">
+                                               
+                                                {% render_field form.date_received type="date" class="form-control"   placeholder="Date Sent" %}
+                                            </div>
+                                        </div>
+                                
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Office  To</label>
+                                            <div class="col-sm-8">
+                                                
+                                                {% render_field form.office_to type="text" class="form-control"   placeholder="" %}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">County</label>
+                                            <div class="col-sm-8">
+                                                
+                                                {% render_field form.county type="text" class="form-control"   placeholder="Optional" %}
+                                            </div>
+                                        </div>
+                                      
+                                        
+                                        <div class="form-group row">
+                                            
+                                            </div>
+                                         
+                                            
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-2 col-form-label">Upload File</label>
+                                                        <div class="col-sm-8">
+                                                         
+                                                            {% render_field form.file type="file" class="form-control"  %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-2 col-form-label">Remarks</label>
+                                                        <div class="col-sm-8">
+                                                            {% render_field form.remarks type="textarea" class="form-control"   placeholder="Remarks" %}
+
+                                                        </div>
+                                                    </div>
+                                                    <button btn-btn primary type=submit>Upload</button>
+
+                                                    {% endwith %}
+                                                </form>
+                                               
+                                               
+                                            </div>
+                                        </div>
+                                        <!-- Basic Form Inputs card end -->
+                                        <!-- Input Grid card start -->
+                                      
+                                        <!-- Input Grid card end -->
+                                        <!-- Input Validation card start -->
+                                     
+                                        
+                                   
+                                        <!-- Page body end -->
+                                    </div>
+                                </div>
+                                <!-- Main-body end -->
+                                <div id="styleSelector">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+    
+
+</div>
+        <!-- Warning Section Starts -->
+        <!-- Older IE warning message -->
+
+    <!-- Required Jquery -->
+    <script type="text/javascript" src="{% static 'assets/js/jquery/jquery.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery-ui/jquery-ui.min.js'%} "></script>
+    <script type="text/javascript" src="{% static 'assets/js/popper.js/popper.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/bootstrap/js/bootstrap.min.js'%} "></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="{% static 'assets/js/jquery-slimscroll/jquery.slimscroll.js'%} "></script>
+    <!-- waves js -->
+    <script src="{% static 'assets/pages/waves/js/waves.min.js'%}"></script>
+
+    <!-- modernizr js -->
+    <script type="text/javascript" src="{% static 'assets/js/SmoothScroll.js'%}"></script>
+    <script src="{% static 'assets/js/jquery.mCustomScrollbar.concat.min.js'%} "></script>
+    <!-- Custom js -->
+    <script src="{% static 'assets/js/pcoded.min.js'%}"></script>
+    <script src="{% static 'assets/js/vertical-layout.min.js'%} "></script>
+    <script src="{% static 'assets/js/jquery.mCustomScrollbar.concat.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/script.js'%}"></script>
+
+{% endblock %}

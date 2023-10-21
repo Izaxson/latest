@@ -1,0 +1,195 @@
+{% extends 'fms/base2.html' %}
+{% load static %}
+{% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+
+{% if messages %}
+<div class="alert alert-success" role="alert">
+
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+   
+</div>
+{% endif %}
+{{ redirect_to_login_immediately }}
+<div class="container-fluid page-body-wrapper" "col-12">
+  
+    <div class="main-panel">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <img src="{% static 'images/mdrbanner.png'%}" alt="banner" />
+          </div>
+        </div>
+      </div>
+      <div class="content-wrapper">
+        
+        <h3 style="text-align: center; color: #008000;">OFFICE OF THE GOVERNOR</h3>
+
+        <h4    style="text-align: center;" >File Management System<br>    
+        </h4>
+        
+        <div class="row grid-margin">
+          <div class="col-12">
+            <div class="card card-statistics">
+              <div class="card-body">
+                <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+                    <div class="statistics-item">
+                      <p>
+                        <i class="icon-sm far fa-envelope mr-2"></i>
+                        
+                        Received
+                      </p>
+                      <h2>{{received_count}}</h2>
+                      <label class="badge badge-outline-success badge-pill">{{percent_received}}% Incoming </label>
+                    </div>
+                    <div class="statistics-item">
+                      <p>
+                        <i class="icon-sm fas fa-paper-plane mr-2"></i>
+                       Sent
+                      </p>
+                      <h2>{{sent_count}}</h2>
+                      <label class="badge badge-outline-danger badge-pill">{{percent_sent}}% Outgoing</label>
+                    </div>
+                    <div class="statistics-item">
+                      <p>
+                        <i class="fas fa-folder-open"></i>
+                        Total Uploads
+                      </p>
+                      <h2>{{total_count}}</h2>
+                      <label class="badge badge-outline-success badge-pill">All Files</label>
+                    </div>
+                   
+                     
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+         
+          <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">
+                  <i class="fas fa-calendar-alt"></i>
+                  Calendar
+                </h4>
+                <div id="inline-datepicker-example" class="datepicker"></div>
+              </div>
+            </div>
+          </div>
+         
+          <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+             
+                <img src="{% static 'images/logo.png'%}" alt="banner" />
+                <div id="orders-chart-legend" class="orders-chart-legend"></div>                  
+             
+            </div>
+          </div>
+
+            <div class="col-md-4  stretch-card">
+              <div class="card" >
+                  <img src="{% static 'images/flag.png'%}" alt="banner" />
+                  <div id="orders-chart-legend" class="orders-chart-legend"></div>                  
+                  <ol>
+                    WORK IN PROGRESS
+                  <li>
+                    OTP LOGIN VERIFICATION - 2FA VIA SMS/EMAIL
+                  </li>
+                  <li>
+                    UPDATE PROFILE PIC
+                  </li>
+                  <li>
+                    PASSWORD RESET FOR USERS FOR EMAIL/SMS OTP
+                  </li>
+                  <li>
+                    ROLE PERMISSIONS 
+                  </li>
+                  <li>
+                    PASSWORD VIEW CREATION
+                  </li>
+
+                  <li>
+                   ADD OTP TO PREVENT DOWNLOAD-SEND OTP 
+                  </li>
+                  <li>
+                    DJANGO DEFENDER
+                   </li>
+                   <li>
+                   
+                   </li>
+               <ol>
+
+              </div>
+            </div>
+           
+            {% comment %} <div class="col-lg-4 grid-margin stretch-card">
+              
+                           
+                  <img src="{% static 'images/flag.png'%}" alt="banner" />
+               
+              
+          </div> {% endcomment %}
+         
+        </div>
+     
+       
+        
+        
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <img src="{% static 'images/mdrbanner.png'%}" alt="banner" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+     
+    </div>
+    
+    <script src="{% static 'vendors/js/vendor.bundle.base.js'%}"></script>
+    <script src="{% static 'vendors/js/vendor.bundle.addons.js'%}"></script>
+    <script src="{% static 'js/dashboard.js'%}"></script>
+    <script src="{% static 'js/off-canvas.js'%}"></script>
+    <script src="{% static 'js/hoverable-collapse.js'%}"></script>
+    <script src="{% static 'js/misc.js'%}"></script>
+    <script src="{% static 'js/settings.js'%}"></script>
+    <script src="{% static 'js/todolist.js'%}"></script>
+    <!-- main-panel ends -->
+  </div>
+  <script>
+    // Get the data you want to display as a bar chart from your Django view
+    var months = {{ months|safe }};
+    var receivedCount = {{ received_count|safe }};
+  
+    // Get the canvas element
+    var barChartCanvas = document.getElementById('barChart').getContext('2d');
+  
+    // Create the bar chart
+    var barChart = new Chart(barChartCanvas, {
+      type: 'bar',
+      data: {
+        labels: months,
+        datasets: [{
+          label: 'Received Count',
+          data: receivedCount,
+          backgroundColor: 'rgba(75, 192, 192, 0.2)', // Bar color
+          borderColor: 'rgba(75, 192, 192, 1)', // Border color
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  {% endblock%}
+   </div>

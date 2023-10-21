@@ -1,0 +1,111 @@
+{% extends 'fms/base2.html' %}
+{% load static%}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <img src="{% static 'images/mdrbanner.png'%}" alt="banner" />
+            </div>
+          </div>
+        </div>
+        <p class="card-description">
+          {% if messages %}
+          <div class="alert alert-danger" role="alert">
+      
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+      
+          </div>
+          {% endif %}
+
+        </p>
+        <form method="POST" enctype="multipart/form-data" class="forms-sample">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="exampleInputEmail3">Subject</label>
+            {% render_field form.subject type="text" class="form-control" placeholder="Subject"  %}
+            {{ form.field_name.errors }}
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail3">File Name</label>
+            
+            {% render_field form.file_name type="text" class="form-control"  placeholder="File name" %}
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail3">Sent To</label>
+            
+            {% render_field form.sent_to type="text" class="form-control"   placeholder="" %}
+          </div> 
+
+          <div class="form-group">
+            <label for="exampleInputEmail3">Institution</label>
+            
+            {% render_field form.institution type="text" class="form-control"   placeholder="" %}
+          </div>
+           <div class="form-group">
+            <label for="exampleInputEmail3">Date Sent</label>
+            
+            {% render_field form.date_sent type="date" class="form-control"   placeholder="Date Sent" %}
+          </div> 
+          <div class="form-group">
+            <label for="exampleInputEmail3">Office From</label>
+            
+            {% render_field form.office_from type="date"  class="form-control"   placeholder="Date" %}
+          </div> 
+
+          
+
+          
+         
+          <div class="form-group">
+            <label>File upload</label>
+            <input type="file" name="file" class="file-upload-default">
+            <div class="input-group col-xs-12">
+              {% render_field form.file type="file" class="form-control"  %}
+              <span class="input-group-append">
+                <button class="file-upload-browse btn btn-success" disabled type="button">Upload</button>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleTextarea1">Remarks</label>
+            {% render_field form.remarks type="textarea" class="form-control"   placeholder="Remarks" %}
+          </div>
+           
+          <button  type="submit" class="btn btn-success mr-2">Submit</button> 
+         
+          <button class="btn btn-light">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Get a reference to the date input field
+    var dateReceivedInput = document.querySelector('#id_date_sent');
+  
+    // Get today's date in the format 'YYYY-MM-DD'
+    var today = new Date().toISOString().split('T')[0];
+  
+    // Set the maximum date for the input field
+    dateReceivedInput.max = today;
+  </script>
+  <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+  <script src="{% static 'vendors/js/vendor.bundle.addons.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'js/misc.js' %}"></script>
+  <script src="{% static 'js/settings.js' %}"></script>
+  <script src="{% static 'js/todolist.js' %}"></script>
+{% endblock %}

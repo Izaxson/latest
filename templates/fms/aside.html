@@ -1,0 +1,127 @@
+{% load static %}
+
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item nav-profile">
+      <div class="nav-link">
+        <div class="profile-image">
+        
+        </div>
+        <div class="profile-name">
+          <p class="name">
+            <img src="{{ user.profile.profile_pic.url }}" class="img-lg rounded-circle mb-2" alt="profile image">
+
+            {% comment %} <img src="{% static 'images/logo.png'%}" alt="banner" /> {% endcomment %}
+         {% comment %} <a href="{% url 'profile' %}"><img src="{{ user.profile_pic.url }}" class="img-lg rounded-circle mb-2" alt="profile image"></a>   {% endcomment %}
+          </p>
+          <br>
+          <button class="btn btn-primary btn-sm mt-3 mb-4"> {{ request.user.first_name}}  {{ request.user.last_name}}</button>
+        </div>
+      </div>
+    </li>
+    {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'dashboard' %}">
+          <i class="fa fa-home menu-icon"></i>
+          
+          <span class="menu-title">Dashboard</span>
+        </a>
+      </li>
+    {% endif %}
+
+   {% if user.is_authenticated %}
+     {% comment %} {% if user.profile.is_clerk %}   {% endcomment %}
+    <li class="nav-item">
+      <a class="nav-link"  href="{% url 'received' %}" aria-expanded="false" aria-controls="page-layouts">
+        <i class="fas fa-inbox menu-icon"></i><br>
+        <span class="menu-title">  Received</span>
+        <i class="menu-arrow"></i>
+      </a>
+      
+     </li>
+     {% comment %} {% endif %}  {% endcomment %}
+   {% endif %} 
+
+
+    {% comment %} {% if profile.is_clerk or profile.is_admin %}  {% endcomment %} 
+  <li class="nav-item">
+      <a class="nav-link"  href="{% url 'mycaptures' %}" aria-expanded="false" aria-controls="page-layouts">
+        <i class="fas fa-calendar menu-icon"></i>
+        <span class="menu-title">My Received</span>
+        <i class="menu-arrow"></i>
+      </a>
+      
+  </li> 
+  <li class="nav-item">
+    <a class="nav-link"  href="{% url 'receivedsearch' %}" aria-expanded="false" aria-controls="general-pages">
+      <i class="fas fa-search menu-icon"></i>
+      <span class="menu-title" "disabled" >Search Received </span>
+      <i class="menu-arrow"></i>
+    </a>
+    
+  </li> 
+ 
+
+ {% if user.is_authenticated %}
+     
+    <li class="nav-item">
+      <a class="nav-link"  href="{% url 'sent' %}" aria-expanded="false" aria-controls="general-pages">
+        <i class="fas fa-paper-plane menu-icon"></i><br>
+        <span class="menu-title"> Sent </span>
+        <i class="menu-arrow"></i>
+      </a>
+      
+    </li>
+   
+    {% endif %} 
+
+    <li class="nav-item">
+      <a class="nav-link"  href="{% url 'mysent' %}" aria-expanded="false" aria-controls="page-layouts">
+        <i class="fas fa-calendar menu-icon"></i>
+        <span class="menu-title">My Sent</span>
+        <i class="menu-arrow"></i>
+      </a>
+      
+  </li> 
+
+    <li class="nav-item">
+      <a class="nav-link"  href="{% url 'sentsearch' %}" aria-expanded="false" aria-controls="general-pages">
+        <i class="fas fa-search menu-icon"></i>
+        <span class="menu-title" "disabled" >Search Sent </span>
+        <i class="menu-arrow"></i>
+      </a>
+      
+    </li> 
+
+   
+     <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#apps" aria-expanded="false" aria-controls="apps">
+        <i class="fas fa-briefcase menu-icon"></i>
+        <span class="menu-title">Profile</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="apps">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="{% url 'password_change' %}"> My Profile </a></li>
+          {% comment %} <li class="nav-item"> <a class="nav-link" href="{% url 'profile' %}"> Change Password </a></li> {% endcomment %}
+          
+        </ul>`
+      </div>
+    </li> 
+ 
+  </ul>
+</nav>
+
+<script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+<script src="{% static 'vendors/js/vendor.bundle.addons.js' %}"></script>
+<!-- endinject -->
+<!-- Plugin js for this page-->
+<!-- End plugin js for this page-->
+<!-- inject:js -->
+<script src="{% static 'js/off-canvas.js' %}"></script>
+<script src="{% static 'js/hoverable-collapse.js' %}"></script>
+<script src="{% static 'js/misc.js' %}"></script>
+<script src="{% static 'js/settings.js' %}"></script>
+<script src="{% static 'js/todolist.js' %}"></script>
+<script src="{% static 'js/dashboard.js' %}"></script>
+

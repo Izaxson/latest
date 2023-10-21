@@ -1,0 +1,99 @@
+{% extends 'fms/base2.html' %}
+{% load static %}
+{% block content %}
+<!-- partial -->
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-12 grid-margin">
+        <div class="col-md-4 grid-margin stretch-card">
+          <div class="card mx-auto"> 
+                <div class="card-body" >
+                    <img src="{{ user.profile.profile_pic.url }}" class="img-lg rounded-circle mb-2" alt="profile image">
+                    <h4> <button class="btn btn-success btn-sm mt-3 mb-4"> {{ request.user.first_name }} {{ request.user.last_name }}</button></h4>
+                    <p class="text-muted"></p>
+                    <p class="mt-4 card-text">
+                      <form method="post" enctype="multipart/form-data" action="{% url 'update_profile_pic' user.pk %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="file" name="profile_picture" accept="image/*" class="form-control-file">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update Profile Picture</button>
+                        </form>
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Change Password</h4>
+            <p class="card-description">
+              {% if messages %}
+              <div class="alert alert-danger" role="alert">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </p>
+            {% load widget_tweaks %}
+            <form method="post" class="form-sample">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Current Password</label>
+                    <div class="col-sm-9">
+                      {% render_field form.old_password|add_class:"form-control" %}
+                      {% for error in form.old_password.errors %}
+                      <small class="text-danger">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">New Password</label>
+                    <div class="col-sm-9">
+                      {% render_field form.new_password1|add_class:"form-control" %}
+                      {% for error in form.new_password1.errors %}
+                      <small class="text-danger">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">New Password Confirm</label>
+                    <div class="col-sm-9">
+                      {% render_field form.new_password2|add_class:"form-control" %}
+                      {% for error in form.new_password2.errors %}
+                      <small class="text-danger">{{ error }}</small>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-success mr-2">Update Password</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'vendors/js/vendor.bundle.base.js'%}"></script>
+  <script src="{% static 'vendors/js/vendor.bundle.addons.js'%}"></script>
+  <script src="{% static 'js/dashboard.js'%}"></script>
+  <script src="{% static 'js/off-canvas.js'%}"></script>
+  <script src="{% static 'js/hoverable-collapse.js'%}"></script>
+  <script src="{% static 'js/misc.js'%}"></script>
+  <script src="{% static 'js/settings.js'%}"></script>
+  <script src="{% static 'js/todolist.js'%}"></script>
+</div>
+{% endblock %}

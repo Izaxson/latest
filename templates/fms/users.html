@@ -1,0 +1,124 @@
+{% extends 'fms/base2.html' %}
+{% load static%}
+{% load widget_tweaks %}
+
+{% block content %}
+{% load widget_tweaks %}
+<!-- Notification.css -->
+
+<div class="content-wrapper">
+  <div class="page-header">
+
+  
+    {% comment %} <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Sample pages</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Orders</li>
+      </ol>
+    </nav> {% endcomment %}
+  </div>
+ 
+
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <img src="{% static 'images/mdrbanner.png'%}" alt="banner" />
+          </div>
+        </div>
+      </div>
+      <br><br>
+      {% if messages %}
+      <div class="alert alert-success" role="alert">
+  
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+  
+      </div>
+      {% endif %}
+    
+      <button><a class="nav-link" "float-right" href="{% url 'addreceived' %}">
+        <span class="btn btn-success"> Upload New </span>
+      </a>
+    </button>
+    <br><br>
+      <div class="row">
+        <div class="col-12">
+
+          <div class="table-responsive">
+            <table id="order-listing" class="table">
+              <thead>
+                <tr class="bg-success text-white">
+
+                  <th>#</th>
+                  <th>subject</th>
+                  <th>institution</th>
+                  <th>Date Received</th>
+                  
+                  <th>Office To</th>
+                  <th>Edit/Delete</th>
+                  <th>View</th>
+                  <th>Download</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for received in object_list%}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{received.subject}}</td>
+
+                  <td>{{received.institution}}</td>
+                  <td>{{received.date_received|date:"d-m-Y"}}</td>
+                  
+                  <td>{{received.office_to}}</td>
+                  <td>
+                    <a href="{% url 'edit-received' received.id %}"><button class="btn btn-light"><i class="fa fa-edit text-primary"></i>
+                    </button>
+                  </td>
+
+                  <td>
+                    <a href="{% url 'view-file' received.id %}">  <button class="btn btn-light"><i class="fa fa-eye text-primary"></i>
+                    </button>
+                  </td>
+                    
+
+                  <td class="text-right">
+                        <a href="{% url 'received-download' received.id %}"> <button
+                        class="btn waves-effect waves-light btn-light"><i class="fas fa-download"></i></button></a>
+
+                  </td>
+                </tr>
+
+                {% endfor%}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<script src="{% static 'vendors/js/vendor.bundle.base.js'%}"></script>
+<script src="{% static 'vendors/js/vendor.bundle.addons.js'%}"></script>
+<!-- endinject -->
+<!-- inject:js -->
+<script src="{% static 'js/off-canvas.js'%}"></script>
+<script src="{% static 'js/hoverable-collapse.js'%}"></script>
+<script src="{% static 'js/misc.js'%}"></script>
+<script src="{% static 'js/settings.js'%}"></script>
+<script src="{% static 'js/todolist.js'%}"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="{% static 'js/data-table.js'%}"></script>
+
+
+
+
+
+
+{% endblock %}

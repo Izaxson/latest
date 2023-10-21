@@ -1,0 +1,107 @@
+{% extends 'fms/base.html' %}
+{% load static%}
+{% block content %}
+
+            
+              
+                    
+                    <div class="pcoded-inner-content">
+                        <!-- Main-body start -->
+                        <div class="main-body">
+                            <div class="page-wrapper">
+                                <!-- Page-body start -->
+                                <div class="page-body">
+                                    <!-- Basic table card start -->
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>Basic Table</h5>
+                                            <span>use class <code>table</code> inside table element</span>
+                                            <div class="card-header-right">
+                                                <ul class="list-unstyled card-option">
+                                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                                    <li><i class="fa fa-window-maximize full-card"></i></li>
+                                                    <li><i class="fa fa-minus minimize-card"></i></li>
+                                                    <li><i class="fa fa-refresh reload-card"></i></li>
+                                                    <li><i class="fa fa-trash close-card"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="card-block table-border-style">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                   
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>subject </th>
+                                                            <th>file_name</th>
+                                                            <th>entity</th>
+                                                            <th>institution </th>
+                                                            <th>priority</th>
+                                                            <th>entity</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                       
+                                                        
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for sent in object_list %}
+                                                        <tr>
+                                                            <th scope="row"></th>
+                                                            <td>{{sent.subject}}</td>
+                                                            <td>{{sent.file_name}}</td>
+                                                            <td>{{sent.entity}}</td>
+                                                            <td>{{sent.institution}}</td>
+                                                            <td>{{sent.priority}}</td>
+                                                            <td>{{sent.entity}}</td>
+                                                            <td>
+                                                                <a href="">Edit</a>
+                                                            </td>
+
+                                                        </tr>
+                                                        {% empty%}
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                               
+                                </div>
+                                <!-- Page-body end -->
+                            </div>
+                        </div>
+                        <!-- Main-body end -->
+
+                        <div id="styleSelector">
+
+                        </div>
+                    </div>
+               
+         
+      
+  
+
+        <!-- Warning Section Starts -->
+        <!-- Older IE warning message -->
+
+    <!-- Required Jquery -->
+    <script type="text/javascript" src="{% static 'assets/js/jquery/jquery.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery-ui/jquery-ui.min.js'%} "></script>
+    <script type="text/javascript" src="{% static 'assets/js/popper.js/popper.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/bootstrap/js/bootstrap.min.js'%} "></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="{% static 'assets/js/jquery-slimscroll/jquery.slimscroll.js'%} "></script>
+    <!-- waves js -->
+    <script src="{% static 'assets/pages/waves/js/waves.min.js'%}"></script>
+
+    <!-- modernizr js -->
+    <script type="text/javascript" src="{% static 'assets/js/SmoothScroll.js'%}"></script>
+    <script src="{% static 'assets/js/jquery.mCustomScrollbar.concat.min.js'%} "></script>
+    <!-- Custom js -->
+    <script src="{% static 'assets/js/pcoded.min.js'%}"></script>
+    <script src="{% static 'assets/js/vertical-layout.min.js'%} "></script>
+    <script src="{% static 'assets/js/jquery.mCustomScrollbar.concat.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/script.js'%}"></script>
+
+{% endblock %}
